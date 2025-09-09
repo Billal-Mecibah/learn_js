@@ -1,32 +1,26 @@
-// Data that will be used to generate cards
-const Title = "Elzero";
-const Description = "Elzero Web School";
-const date = "25/10";
-
-// Reusable function that returns markup for one card
-function createCard({ title, description, date }) {
-    return `
-    <div class="card" dir="rtl">
-        <div class="child">
-            <h2>${title}</h2>
-            <p>${description}</p>
-            <span>${date}</span>
-        </div>
-    </div>
-    `;
+let Age, Name, Status;
+let sentence;
+function showDetails(...sk) {
+  for (let i = 0; i < sk.length; i++) {
+    if (typeof sk[i] === "string") {
+      Name = sk[i];
+    }
+    if (typeof sk[i] === "number") {
+      Age = sk[i];
+    }
+    if (typeof sk[i] === "boolean" && sk[i] === true) {
+      Status = sk[i];
+      sentence = "You Are Available for Hire";
+    }
+    if (typeof sk[i] === "boolean" && sk[i] === false) {
+      Status = sk[i];
+      sentence = "You Are Not Available for Hire";
+    }
+  }
+  console.log(`Hello ${Name} ,Your Age Is ${Age}, ${sentence}`);
 }
 
-// Option A: create an array of 4 identical items (you can vary them)
-const items = Array.from({ length: 4 }, () => ({ title: Title, description: Description, date }));
-
-// Option B (alternative): generate N copies using a count
-// const count = 4;
-// const items = new Array(count).fill({ title: Title, description: Description, date });
-
-// Insert generated markup into the page safely
-document.addEventListener('DOMContentLoaded', () => {
-    const container = document.createElement('div');
-    container.className = 'cards-container';
-    container.innerHTML = items.map(createCard).join('');
-    document.body.prepend(container);
-});
+showDetails("Bilal", 20, true);
+showDetails(20, "Bilal", true);
+showDetails(true, 20, "Bilal");
+showDetails(false, "Bilal", 20);
