@@ -1,7 +1,15 @@
-var x = 10;
-if (10 === 10) {
-    let x = 50;
-    console.log(`from if block ${x}`);
-}
-console.log(`from global ${x}`);
+function parent() {
+  let a = 10;
+  function child() {
+      console.log(a);
+    function grand() {
+      let b = 100;
+      console.log(`From grand ${a}`);
+      console.log(`From grand ${b}`);
+    }
 
+    grand();
+  }
+  child();
+}
+parent();
